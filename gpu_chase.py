@@ -13,7 +13,7 @@ random_id = uuid.uuid4()  # Generate a random UUID.
 short_id = str(random_id)[:8]
 
 project_id = "core-verbena-328218"
-gpu_type = "nvidia-tesla-p4"
+gpu_type = "nvidia-tesla-t4"
 instance_name = "bm3291-trial-gpu" + short_id
 
 
@@ -114,6 +114,7 @@ def create_instance_with_gpu(project_id, zone, name, machine_type, image_name, i
 
 
 def test_vm_running(project_id, zone, name):
+    """Test whether a VM created is running"""
     operation_name = create_instance_with_gpu(project_id=project_id,
                                               zone=zone,
                                               name=instance_name,
@@ -121,7 +122,7 @@ def test_vm_running(project_id, zone, name):
                                               image_name="tf2-2-7-cu113-v20211202-debian-10",
                                               image_project="deeplearning-platform-release",
                                               disk_size=100,
-                                              gpu_type="nvidia-tesla-p4",
+                                              gpu_type="nvidia-tesla-t4",
                                               gpu_count=1)
 
     print(f"Operation to create VM {name} started: {operation_name}")
@@ -143,6 +144,7 @@ def test_vm_running(project_id, zone, name):
 
 
 def check_vm_for_all_zones():
+    """Iterate through all zones to check which in which zone we can able to create VM with GPU"""
     zone_counter = 0
     available_zones = list_available_zones(gpu_type)
     for zone in available_zones:
