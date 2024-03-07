@@ -1,0 +1,80 @@
+bm3291@cloudshell:~$ /usr/bin/python /home/bm3291/gpu_chase.py
+Operation to create VM bm3291-trial-gpu53a4a29c started: operation-1709827626857-61314445375b4-3ae8495e-59a80da8
+Waiting for the operation to complete...
+The VM creation operation is completed.
+But with errors: {'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/core-verbena-328218/zones/us-east4-c' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the us-east4-c zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-4', 'zone': 'us-east4-c', 'zonesAvailable': ''}}}]}]}
+Operation to create VM bm3291-trial-gpu53a4a29c started: operation-1709827638286-613144501da47-d22bb92a-747d4252
+Waiting for the operation to complete...
+The VM creation operation is completed.
+But with errors: {'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/core-verbena-328218/zones/us-east4-b' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the us-east4-b zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-4', 'zone': 'us-east4-b', 'zonesAvailable': ''}}}]}]}
+Operation to create VM bm3291-trial-gpu53a4a29c started: operation-1709827649929-6131445b37f45-791fe778-a752a6b2
+Waiting for the operation to complete...
+The VM creation operation is completed.
+But with errors: {'errors': [{'code': 'ZONE_RESOURCE_POOL_EXHAUSTED', 'message': "The zone 'projects/core-verbena-328218/zones/us-east4-a' does not have enough resources available to fulfill the request.  Try a different zone, or try again later.", 'errorDetails': [{'help': {'links': [{'description': 'Troubleshooting documentation', 'url': 'https://cloud.google.com/compute/docs/resource-error'}]}}, {'localizedMessage': {'locale': 'en-US', 'message': 'A n1-standard-4 VM instance with 1 nvidia-tesla-p4 accelerator(s) is currently unavailable in the us-east4-a zone. Alternatively, you can try your request again with a different VM hardware configuration or at a later time. For more information, see the troubleshooting documentation.'}}, {'errorInfo': {'reason': 'resource_availability', 'domain': 'compute.googleapis.com', 'metadatas': {'attachment': 'nvidia-tesla-p4:1', 'vmType': 'n1-standard-4', 'zone': 'us-east4-a', 'zonesAvailable': ''}}}]}]}
+Operation to create VM bm3291-trial-gpu53a4a29c started: operation-1709827661512-6131446643dde-5612f3df-913c1de9
+Waiting for the operation to complete...
+Waiting for the operation to complete...
+Waiting for the operation to complete...
+The VM creation operation is completed.
+VM bm3291-trial-gpu53a4a29c up and running in us-central1-c
+bm3291@cloudshell:~$ gcloud compute ssh bm3291-trial-gpu53a4a29c --zone us-central1-c --project core-verbena-328218
+Warning: Permanently added 'compute.770445319896062114' (ECDSA) to the list of known hosts.
+======================================
+Welcome to the Google Deep Learning VM
+======================================
+
+Version: tf2-gpu.2-7.m87
+Based on: Debian GNU/Linux 10 (buster) (GNU/Linux 4.19.0-18-cloud-amd64 x86_64\n)
+
+Resources:
+ * Google Deep Learning Platform StackOverflow: https://stackoverflow.com/questions/tagged/google-dl-platform
+ * Google Cloud Documentation: https://cloud.google.com/deep-learning-vm
+ * Google Group: https://groups.google.com/forum/#!forum/google-dl-platform
+
+To reinstall Nvidia driver (if needed) run:
+sudo /opt/deeplearning/install-driver.sh
+TensorFlow comes pre-installed with this image. To install TensorFlow binaries in a virtualenv (or conda env),
+please use the binaries that are pre-built for this image. You can find the binaries at
+/opt/deeplearning/binaries/tensorflow/
+If you need to install a different version of Tensorflow manually, use the common Deep Learning image with the
+right version of CUDA
+
+Linux bm3291-trial-gpu53a4a29c 4.19.0-18-cloud-amd64 #1 SMP Debian 4.19.208-1 (2021-09-29) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+bm3291@bm3291-trial-gpu53a4a29c:~$ nvidia-smi
+Thu Mar  7 16:11:22 2024       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 460.73.01    Driver Version: 460.73.01    CUDA Version: 11.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla P4            Off  | 00000000:00:04.0 Off |                    0 |
+| N/A   41C    P0    23W /  75W |      0MiB /  7611MiB |      3%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+bm3291@bm3291-trial-gpu53a4a29c:~$ logout
+Connection to 35.208.235.149 closed.
+bm3291@cloudshell:~$ gcloud compute instances delete bm3291-trial-gpu53a4a29c --zone us-central1-c --project core-verbena-328218 
+The following instances will be deleted. Any attached disks configured to be auto-deleted will be deleted unless they are attached to any other instances or the 
+`--keep-disks` flag is given and specifies them for keeping. Deleting a disk is irreversible and any data on the disk will be lost.
+ - [bm3291-trial-gpu53a4a29c] in [us-central1-c]
+
+Do you want to continue (Y/n)?  Y
+
+Deleted [https://www.googleapis.com/compute/v1/projects/core-verbena-328218/zones/us-central1-c/instances/bm3291-trial-gpu53a4a29c].
