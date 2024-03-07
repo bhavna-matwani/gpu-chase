@@ -7,9 +7,8 @@ The create_instance_with_gpu function is central to this script, allowing users 
 
 After attempting to create a VM instance in each available zone until success or a specified limit is reached, the script concludes by reporting the outcome of the VM creation process, including the operational status and any encountered errors. This automation streamlines the deployment of GPU-accelerated VM instances for computational tasks, making it an invaluable tool for developers and researchers working in cloud-based environments. 
 
+After running gpu_chase.py, run these commands in the cloud shell:
 ```
-After running gpu_chase.py, run these commands in the command shell 
-
 gcloud compute ssh {instance_name} --zone {zone} --project {project_id}
 nvidia-smi
 gcloud compute instances delete {instance_name} --zone {zone} --project {project_id}
