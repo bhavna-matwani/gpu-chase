@@ -1,4 +1,4 @@
-# Cloud and Machine Learning HW; gpu-chase
+## Cloud and Machine Learning HW: gpu-chase
 This Python script automates the process of creating and deploying a Virtual Machine (VM) instance with an attached GPU on Google Cloud Platform (GCP). The script generates a unique identifier for each VM instance to ensure a distinct name, leveraging the universally unique identifier (UUID) for this purpose. 
 
 It defines functions for listing available zones where the specified GPU type is available, creating a VM instance with the desired specifications, and checking the operational status of the VM. 
