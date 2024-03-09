@@ -145,18 +145,24 @@ def test_vm_running(project_id, zone, name):
 
 def check_vm_for_all_zones():
     """Iterate through all zones to check which in which zone we can able to create VM with GPU"""
+    global instance_name
     zone_counter = 0
+    success = False
     available_zones = list_available_zones(gpu_type)
     for zone in available_zones:
         if zone_counter >= 10:
-            print(f"VM {instance_name} creation unsuccessful")
+            print(f"The code has tested 10 zones and VM creation resulted in: {success}")
             break
         status = test_vm_running(project_id, zone, instance_name)
         if status == 'ZONE_RESOURCE_POOL_EXHAUSTED' or status == 'QUOTA_EXCEEDED':
+            print(f"VM {instance_name} creation unsuccessful in {zone}")
             zone_counter += 1
         else:
+            success = True
             print(f"VM {instance_name} up and running in {zone}")
-            break
+            random_id = uuid.uuid4()
+            short_id = str(random_id)[:8]
+            instance_name = "bm3291-trial-gpu" + short_id
 
 
 check_vm_for_all_zones()
